@@ -35,11 +35,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-4xl font-bold text-white drop-shadow-lg mb-2">
+            <h1 className="mb-2 text-4xl font-bold text-white drop-shadow-lg">
               Crypto Market
             </h1>
             <p className="text-white/80 drop-shadow">
@@ -52,8 +52,8 @@ export default function Home() {
         {/* Loading State */}
         {isLoading ? (
           <div className="space-y-8">
-            <div className="h-32 glass rounded-2xl animate-pulse" />
-            <div className="h-96 glass rounded-2xl animate-pulse" />
+            <div className="glass h-32 animate-pulse rounded-2xl" />
+            <div className="glass h-96 animate-pulse rounded-2xl" />
           </div>
         ) : (
           <>
@@ -61,7 +61,7 @@ export default function Home() {
             <MarketSummary coins={coins} currency={currency} />
 
             {/* Crypto Table */}
-            <div className="glass rounded-2xl shadow-2xl overflow-hidden">
+            <div className="glass overflow-hidden rounded-2xl shadow-2xl">
               <CoinTable coins={coins} currency={currency} />
             </div>
           </>

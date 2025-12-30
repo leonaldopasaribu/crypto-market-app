@@ -18,9 +18,9 @@ export default function MarketSummary({ coins, currency }: MarketSummaryProps) {
     : "0.0";
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-      <div className="glass rounded-2xl p-6 shadow-xl transition-all duration-300 ">
-        <p className="text-xs font-medium text-white/70 uppercase tracking-wide mb-2">
+    <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="glass rounded-2xl p-6 shadow-xl transition-all duration-300">
+        <p className="mb-2 text-xs font-medium tracking-wide text-white/70 uppercase">
           Market Cap
         </p>
         <p className="text-2xl font-bold text-white drop-shadow">
@@ -29,7 +29,7 @@ export default function MarketSummary({ coins, currency }: MarketSummaryProps) {
       </div>
 
       <div className="glass rounded-2xl p-6 shadow-xl transition-all duration-300">
-        <p className="text-xs font-medium text-white/70 uppercase tracking-wide mb-2">
+        <p className="mb-2 text-xs font-medium tracking-wide text-white/70 uppercase">
           24h Volume
         </p>
         <p className="text-2xl font-bold text-white drop-shadow">
@@ -37,8 +37,8 @@ export default function MarketSummary({ coins, currency }: MarketSummaryProps) {
         </p>
       </div>
 
-      <div className="glass rounded-2xl p-6 shadow-xl transition-all duration-300 ">
-        <p className="text-xs font-medium text-white/70 uppercase tracking-wide mb-2">
+      <div className="glass rounded-2xl p-6 shadow-xl transition-all duration-300">
+        <p className="mb-2 text-xs font-medium tracking-wide text-white/70 uppercase">
           BTC Dominance
         </p>
         <p className="text-2xl font-bold text-white drop-shadow">

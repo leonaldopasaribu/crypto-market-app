@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Crypto Market Dashboard | Live Cryptocurrency Prices",
-  description: "Track live cryptocurrency prices, market cap, and 24h changes. Real-time data powered by CoinGecko API.",
+  description:
+    "Track live cryptocurrency prices, market cap, and 24h changes. Real-time data powered by CoinGecko API.",
 };
 
 export default function RootLayout({

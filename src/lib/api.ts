@@ -25,10 +25,13 @@ export async function fetchCoins(currency: Currency = "usd"): Promise<Coin[]> {
   }
 }
 
-export function formatCurrency(value: number, currency: Currency = "usd"): string {
+export function formatCurrency(
+  value: number,
+  currency: Currency = "usd"
+): string {
   const currencyCode = currency.toUpperCase();
   const locale = currency === "idr" ? "id-ID" : "en-US";
-  
+
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency: currencyCode,
@@ -37,9 +40,12 @@ export function formatCurrency(value: number, currency: Currency = "usd"): strin
   }).format(value);
 }
 
-export function formatLargeNumber(value: number, currency: Currency = "usd"): string {
+export function formatLargeNumber(
+  value: number,
+  currency: Currency = "usd"
+): string {
   const symbol = currency === "idr" ? "Rp" : "$";
-  
+
   if (value >= 1e12) {
     return `${symbol}${(value / 1e12).toFixed(2)}T`;
   }
@@ -79,7 +85,11 @@ export async function fetchCoinDetail(coinId: string): Promise<CoinDetail> {
   }
 }
 
-export async function fetchCoinChart(coinId: string, currency: Currency = "usd", days: number = 7): Promise<ChartData[]> {
+export async function fetchCoinChart(
+  coinId: string,
+  currency: Currency = "usd",
+  days: number = 7
+): Promise<ChartData[]> {
   try {
     const response = await fetch(
       `${COINGECKO_API_BASE}/coins/${coinId}/market_chart?vs_currency=${currency}&days=${days}`,

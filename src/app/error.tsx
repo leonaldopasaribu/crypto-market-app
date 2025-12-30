@@ -8,11 +8,11 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-zinc-200 dark:border-zinc-800 p-8 text-center">
-        <div className="w-16 h-16 bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4 dark:bg-zinc-950">
+      <div className="w-full max-w-md rounded-xl border border-zinc-200 bg-white p-8 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/20">
           <svg
-            className="w-8 h-8 text-red-600 dark:text-red-500"
+            className="h-8 w-8 text-red-600 dark:text-red-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -25,15 +25,16 @@ export default function Error({
             />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
+        <h2 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-zinc-100">
           Something went wrong
         </h2>
-        <p className="text-zinc-600 dark:text-zinc-400 mb-6">
-          {error.message || "Failed to load cryptocurrency data. Please try again."}
+        <p className="mb-6 text-zinc-600 dark:text-zinc-400">
+          {error.message ||
+            "Failed to load cryptocurrency data. Please try again."}
         </p>
         <button
           onClick={reset}
-          className="w-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-6 py-3 rounded-lg font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors duration-150"
+          className="w-full rounded-lg bg-zinc-900 px-6 py-3 font-medium text-white transition-colors duration-150 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
         >
           Try again
         </button>

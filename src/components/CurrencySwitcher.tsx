@@ -8,9 +8,9 @@ interface CurrencySwitcherProps {
   currentCurrency?: Currency;
 }
 
-export default function CurrencySwitcher({ 
+export default function CurrencySwitcher({
   onCurrencyChange,
-  currentCurrency: externalCurrency 
+  currentCurrency: externalCurrency,
 }: CurrencySwitcherProps) {
   // Initialize from localStorage using lazy initializer
   const [currentCurrency, setCurrentCurrency] = useState<Currency>(() => {
@@ -39,23 +39,23 @@ export default function CurrencySwitcher({
   };
 
   return (
-    <div className="flex items-center gap-2 glass rounded-xl p-1 shadow-lg">
+    <div className="glass flex items-center gap-2 rounded-xl p-1 shadow-lg">
       <button
         onClick={() => handleCurrencyChange("usd")}
-        className={`cursor-pointer px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+        className={`cursor-pointer rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
           currentCurrency === "usd"
             ? "bg-white/30 text-white shadow-lg backdrop-blur-md"
-            : "text-white/70 hover:text-white hover:bg-white/10"
+            : "text-white/70 hover:bg-white/10 hover:text-white"
         }`}
       >
         USD
       </button>
       <button
         onClick={() => handleCurrencyChange("idr")}
-        className={`cursor-pointer px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+        className={`cursor-pointer rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
           currentCurrency === "idr"
             ? "bg-white/30 text-white shadow-lg backdrop-blur-md"
-            : "text-white/70 hover:text-white hover:bg-white/10"
+            : "text-white/70 hover:bg-white/10 hover:text-white"
         }`}
       >
         IDR
