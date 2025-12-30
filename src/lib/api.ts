@@ -1,13 +1,36 @@
-import { Coin, Currency, CoinDetail, ChartData, TrendingCoin } from "@/types/coin";
+import {
+  Coin,
+  Currency,
+  CoinDetail,
+  ChartData,
+  TrendingCoin,
+} from "@/types/coin";
 
-const COINGECKO_API_BASE = "https://api.coingecko.com/api/v3";
+const COINGECKO_API_BASE = process.env.NEXT_PUBLIC_COINGECKO_API_BASE;
+const COINGECKO_API_KEY = process.env.NEXT_PUBLIC_COINGECKO_API_KEY;
 
-export async function fetchCoins(currency: Currency = "usd", perPage: number = 100): Promise<Coin[]> {
+function getHeaders(): HeadersInit {
+  const headers: HeadersInit = {
+    "Content-Type": "application/json",
+  };
+
+  if (COINGECKO_API_KEY) {
+    headers["x-cg-pro-api-key"] = COINGECKO_API_KEY;
+  }
+
+  return headers;
+}
+
+export async function fetchCoins(
+  currency: Currency = "usd",
+  perPage: number = 100
+): Promise<Coin[]> {
   try {
     const response = await fetch(
       `${COINGECKO_API_BASE}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=${perPage}&page=1&sparkline=false&price_change_percentage=24h`,
       {
-        cache: 'no-store', // Always fetch fresh data
+        cache: "no-store",
+        headers: getHeaders(),
       }
     );
 
@@ -23,43 +46,6 @@ export async function fetchCoins(currency: Currency = "usd", perPage: number = 1
   }
 }
 
-export function formatCurrency(
-  value: number,
-  currency: Currency = "usd"
-): string {
-  const currencyCode = currency.toUpperCase();
-  const locale = currency === "idr" ? "id-ID" : "en-US";
-
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency: currencyCode,
-    minimumFractionDigits: currency === "idr" ? 0 : 2,
-    maximumFractionDigits: currency === "idr" ? 0 : 2,
-  }).format(value);
-}
-
-export function formatLargeNumber(
-  value: number,
-  currency: Currency = "usd"
-): string {
-  const symbol = currency === "idr" ? "Rp" : "$";
-
-  if (value >= 1e12) {
-    return `${symbol}${(value / 1e12).toFixed(2)}T`;
-  }
-  if (value >= 1e9) {
-    return `${symbol}${(value / 1e9).toFixed(2)}B`;
-  }
-  if (value >= 1e6) {
-    return `${symbol}${(value / 1e6).toFixed(2)}M`;
-  }
-  return formatCurrency(value, currency);
-}
-
-export function formatPercentage(value: number): string {
-  return `${value >= 0 ? "+" : ""}${value.toFixed(2)}%`;
-}
-
 export async function fetchCoinDetail(coinId: string): Promise<CoinDetail> {
   try {
     const response = await fetch(
@@ -68,6 +54,7 @@ export async function fetchCoinDetail(coinId: string): Promise<CoinDetail> {
         next: {
           revalidate: 60,
         },
+        headers: getHeaders(),
       }
     );
 
@@ -95,6 +82,7 @@ export async function fetchCoinChart(
         next: {
           revalidate: 60,
         },
+        headers: getHeaders(),
       }
     );
 
@@ -115,12 +103,10 @@ export async function fetchCoinChart(
 
 export async function fetchTrendingCoins(): Promise<TrendingCoin[]> {
   try {
-    const response = await fetch(
-      `${COINGECKO_API_BASE}/search/trending`,
-      {
-        cache: 'no-store',
-      }
-    );
+    const response = await fetch(`${COINGECKO_API_BASE}/search/trending`, {
+      cache: "no-store",
+      headers: getHeaders(),
+    });
 
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);

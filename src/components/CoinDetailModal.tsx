@@ -3,13 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Currency, CoinDetail, ChartData } from "@/types/coin";
-import {
-  fetchCoinDetail,
-  fetchCoinChart,
-  formatCurrency,
-  formatLargeNumber,
-  formatPercentage,
-} from "@/lib/api";
+import { fetchCoinDetail, fetchCoinChart } from "@/lib/api";
 import {
   LineChart,
   Line,
@@ -19,6 +13,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { FormatterUtil } from "@/utils/formatter";
 
 interface CoinDetailModalProps {
   coinId: string;
@@ -146,12 +141,12 @@ export default function CoinDetailModal({
           {/* Price */}
           <div className="mb-6">
             <p className="mb-2 text-4xl font-bold text-white drop-shadow-lg">
-              {formatCurrency(currentPrice, currency)}
+              {FormatterUtil.formatCurrency(currentPrice, currency)}
             </p>
             <p
               className={`text-lg font-medium ${isPositive ? "text-emerald-300" : "text-red-300"}`}
             >
-              {formatPercentage(priceChange24h)} (24h)
+              {FormatterUtil.formatPercentage(priceChange24h)} (24h)
             </p>
           </div>
 
@@ -194,7 +189,10 @@ export default function CoinDetailModal({
                 />
                 <YAxis
                   tickFormatter={(value) =>
-                    formatCurrency(value, currency).replace(/\.\d+/, "")
+                    FormatterUtil.formatCurrency(value, currency).replace(
+                      /\.\d+/,
+                      ""
+                    )
                   }
                   stroke="#ffffff"
                   style={{ fontSize: "12px" }}
@@ -209,7 +207,7 @@ export default function CoinDetailModal({
                   }}
                   labelFormatter={formatDate}
                   formatter={(value) => [
-                    formatCurrency(Number(value) || 0, currency),
+                    FormatterUtil.formatCurrency(Number(value) || 0, currency),
                     "Price",
                   ]}
                 />
@@ -229,7 +227,7 @@ export default function CoinDetailModal({
             <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
               <p className="mb-1 text-xs text-white/70">Market Cap</p>
               <p className="text-lg font-semibold text-white">
-                {formatLargeNumber(
+                {FormatterUtil.formatLargeNumber(
                   coinDetail.market_data.market_cap[currency],
                   currency
                 )}
@@ -238,7 +236,7 @@ export default function CoinDetailModal({
             <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
               <p className="mb-1 text-xs text-white/70">24h Volume</p>
               <p className="text-lg font-semibold text-white">
-                {formatLargeNumber(
+                {FormatterUtil.formatLargeNumber(
                   coinDetail.market_data.total_volume[currency],
                   currency
                 )}
@@ -247,7 +245,7 @@ export default function CoinDetailModal({
             <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
               <p className="mb-1 text-xs text-white/70">24h High</p>
               <p className="text-lg font-semibold text-white">
-                {formatCurrency(
+                {FormatterUtil.formatCurrency(
                   coinDetail.market_data.high_24h[currency],
                   currency
                 )}
@@ -256,7 +254,7 @@ export default function CoinDetailModal({
             <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
               <p className="mb-1 text-xs text-white/70">24h Low</p>
               <p className="text-lg font-semibold text-white">
-                {formatCurrency(
+                {FormatterUtil.formatCurrency(
                   coinDetail.market_data.low_24h[currency],
                   currency
                 )}
@@ -265,13 +263,19 @@ export default function CoinDetailModal({
             <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
               <p className="mb-1 text-xs text-white/70">All-Time High</p>
               <p className="text-lg font-semibold text-white">
-                {formatCurrency(coinDetail.market_data.ath[currency], currency)}
+                {FormatterUtil.formatCurrency(
+                  coinDetail.market_data.ath[currency],
+                  currency
+                )}
               </p>
             </div>
             <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
               <p className="mb-1 text-xs text-white/70">All-Time Low</p>
               <p className="text-lg font-semibold text-white">
-                {formatCurrency(coinDetail.market_data.atl[currency], currency)}
+                {FormatterUtil.formatCurrency(
+                  coinDetail.market_data.atl[currency],
+                  currency
+                )}
               </p>
             </div>
           </div>
