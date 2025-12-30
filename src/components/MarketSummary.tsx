@@ -1,5 +1,5 @@
 import { Coin, Currency } from "@/types/coin";
-import { formatLargeNumber } from "@/lib/api";
+import { FormatterUtil } from "@/utils/formatter";
 
 interface MarketSummaryProps {
   coins: Coin[];
@@ -24,7 +24,7 @@ export default function MarketSummary({ coins, currency }: MarketSummaryProps) {
           Market Cap
         </p>
         <p className="text-2xl font-bold text-white drop-shadow">
-          {formatLargeNumber(totalMarketCap, currency)}
+          {FormatterUtil.formatLargeNumber(totalMarketCap, currency)}
         </p>
       </div>
 
@@ -33,7 +33,7 @@ export default function MarketSummary({ coins, currency }: MarketSummaryProps) {
           24h Volume
         </p>
         <p className="text-2xl font-bold text-white drop-shadow">
-          {formatLargeNumber(total24hVolume, currency)}
+          {FormatterUtil.formatLargeNumber(total24hVolume, currency)}
         </p>
       </div>
 

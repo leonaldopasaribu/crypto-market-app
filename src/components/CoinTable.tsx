@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Coin, Currency } from "@/types/coin";
-import { formatCurrency, formatLargeNumber, formatPercentage } from "@/lib/api";
 import CoinDetailModal from "./CoinDetailModal";
+import { FormatterUtil } from "@/utils/formatter";
 
 interface CoinTableProps {
   coins: Coin[];
@@ -124,7 +124,7 @@ export default function CoinTable({
                   </div>
                 </td>
                 <td className="px-4 py-4 text-right font-medium text-white">
-                  {formatCurrency(coin.current_price, currency)}
+                  {FormatterUtil.formatCurrency(coin.current_price, currency)}
                 </td>
                 <td className="px-4 py-4 text-right font-medium">
                   <span
@@ -134,14 +134,14 @@ export default function CoinTable({
                         : "font-semibold text-red-300"
                     }
                   >
-                    {formatPercentage(coin.price_change_percentage_24h)}
+                    {FormatterUtil.formatPercentage(coin.price_change_percentage_24h)}
                   </span>
                 </td>
                 <td className="hidden px-4 py-4 text-right text-white/80 sm:table-cell">
-                  {formatLargeNumber(coin.market_cap, currency)}
+                  {FormatterUtil.formatLargeNumber(coin.market_cap, currency)}
                 </td>
                 <td className="hidden px-4 py-4 text-right text-white/80 lg:table-cell">
-                  {formatLargeNumber(coin.total_volume, currency)}
+                  {FormatterUtil.formatLargeNumber(coin.total_volume, currency)}
                 </td>
               </tr>
             ))}
