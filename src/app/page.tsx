@@ -6,7 +6,6 @@ import CoinTable from "@/components/CoinTable";
 import MarketSummary from "@/components/MarketSummary";
 import CurrencySwitcher from "@/components/CurrencySwitcher";
 import SearchBar from "@/components/SearchBar";
-import AutoRefreshTimer from "@/components/AutoRefreshTimer";
 import CoinDetailModal from "@/components/CoinDetailModal";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Currency, Coin } from "@/types/coin";
@@ -181,9 +180,9 @@ export default function Home() {
           </>
         )}
 
-        {/* Footer with Auto Refresh */}
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <AutoRefreshTimer onRefresh={loadCoins} intervalSeconds={60} />
+        {/* Footer */}
+        <div className="mt-8 text-center text-sm text-white/70">
+          <span>Powered by CoinGecko API</span>
         </div>
       </div>
 

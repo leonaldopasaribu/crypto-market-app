@@ -28,7 +28,10 @@ export class FormatterUtil {
     return FormatterUtil.formatCurrency(value, currency);
   }
 
-  static formatPercentage(value: number): string {
+  static formatPercentage(value: number | null | undefined): string {
+    if (value == null) {
+      return "N/A";
+    }
     return `${value >= 0 ? "+" : ""}${value.toFixed(2)}%`;
   }
 }
