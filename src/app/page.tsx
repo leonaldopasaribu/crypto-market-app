@@ -34,15 +34,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+    <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
+            <h1 className="text-4xl font-bold text-white drop-shadow-lg mb-2">
               Crypto Market
             </h1>
-            <p className="text-zinc-600 dark:text-zinc-400">
+            <p className="text-white/80 drop-shadow">
               Live cryptocurrency prices and market data
             </p>
           </div>
@@ -52,8 +52,8 @@ export default function Home() {
         {/* Loading State */}
         {isLoading ? (
           <div className="space-y-8">
-            <div className="h-32 bg-zinc-200 dark:bg-zinc-800 rounded-xl animate-pulse" />
-            <div className="h-96 bg-zinc-200 dark:bg-zinc-800 rounded-xl animate-pulse" />
+            <div className="h-32 glass rounded-2xl animate-pulse" />
+            <div className="h-96 glass rounded-2xl animate-pulse" />
           </div>
         ) : (
           <>
@@ -61,14 +61,14 @@ export default function Home() {
             <MarketSummary coins={coins} currency={currency} />
 
             {/* Crypto Table */}
-            <div className="bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+            <div className="glass rounded-2xl shadow-2xl overflow-hidden">
               <CoinTable coins={coins} currency={currency} />
             </div>
           </>
         )}
 
         {/* Footer */}
-        <div className="mt-8 text-center text-sm text-zinc-500 dark:text-zinc-500">
+        <div className="mt-8 text-center text-sm text-white/70 drop-shadow">
           Data updates every 60 seconds • Powered by CoinGecko API
         </div>
       </div>

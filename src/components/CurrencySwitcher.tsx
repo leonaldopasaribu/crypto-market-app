@@ -39,23 +39,23 @@ export default function CurrencySwitcher({
   };
 
   return (
-    <div className="flex items-center gap-2 bg-white dark:bg-zinc-900 rounded-lg p-1 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+    <div className="flex items-center gap-2 glass rounded-xl p-1 shadow-lg">
       <button
         onClick={() => handleCurrencyChange("usd")}
-        className={`cursor-pointer px-4 py-2 rounded-md text-sm font-medium transition-all duration-150 ${
+        className={`cursor-pointer px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
           currentCurrency === "usd"
-            ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900"
-            : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+            ? "bg-white/30 text-white shadow-lg backdrop-blur-md"
+            : "text-white/70 hover:text-white hover:bg-white/10"
         }`}
       >
         USD
       </button>
       <button
         onClick={() => handleCurrencyChange("idr")}
-        className={`cursor-pointer px-4 py-2 rounded-md text-sm font-medium transition-all duration-150 ${
+        className={`cursor-pointer px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
           currentCurrency === "idr"
-            ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900"
-            : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+            ? "bg-white/30 text-white shadow-lg backdrop-blur-md"
+            : "text-white/70 hover:text-white hover:bg-white/10"
         }`}
       >
         IDR
