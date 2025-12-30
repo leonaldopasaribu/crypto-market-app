@@ -8,6 +8,7 @@ import CurrencySwitcher from "@/components/CurrencySwitcher";
 import SearchBar from "@/components/SearchBar";
 import AutoRefreshTimer from "@/components/AutoRefreshTimer";
 import CoinDetailModal from "@/components/CoinDetailModal";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Currency, Coin } from "@/types/coin";
 import { useWatchlist } from "@/hooks/useWatchlist";
 
@@ -108,7 +109,10 @@ export default function Home() {
               Live cryptocurrency prices and market data
             </p>
           </div>
-          <CurrencySwitcher onCurrencyChange={handleCurrencyChange} />
+          <div className="flex flex-wrap items-center gap-3">
+            <ThemeToggle />
+            <CurrencySwitcher onCurrencyChange={handleCurrencyChange} />
+          </div>
         </div>
 
         {/* Loading State */}
