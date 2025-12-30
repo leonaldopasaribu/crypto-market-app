@@ -1,15 +1,13 @@
-import { Coin, Currency, CoinDetail, ChartData } from "@/types/coin";
+import { Coin, Currency, CoinDetail, ChartData, TrendingCoin } from "@/types/coin";
 
 const COINGECKO_API_BASE = "https://api.coingecko.com/api/v3";
 
-export async function fetchCoins(currency: Currency = "usd"): Promise<Coin[]> {
+export async function fetchCoins(currency: Currency = "usd", perPage: number = 100): Promise<Coin[]> {
   try {
     const response = await fetch(
-      `${COINGECKO_API_BASE}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h`,
+      `${COINGECKO_API_BASE}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=${perPage}&page=1&sparkline=false&price_change_percentage=24h`,
       {
-        next: {
-          revalidate: 60, // ISR: revalidate every 60 seconds
-        },
+        cache: 'no-store', // Always fetch fresh data
       }
     );
 
@@ -111,6 +109,27 @@ export async function fetchCoinChart(
     }));
   } catch (error) {
     console.error("Failed to fetch coin chart:", error);
+    throw error;
+  }
+}
+
+export async function fetchTrendingCoins(): Promise<TrendingCoin[]> {
+  try {
+    const response = await fetch(
+      `${COINGECKO_API_BASE}/search/trending`,
+      {
+        cache: 'no-store',
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.coins || [];
+  } catch (error) {
+    console.error("Failed to fetch trending coins:", error);
     throw error;
   }
 }
