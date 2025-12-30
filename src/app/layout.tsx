@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const siteName = "Crypto Market Dashboard";
 const siteDescription =
   "Track live cryptocurrency prices, market cap, and 24h changes. Real-time crypto market data powered by CoinGecko API. Monitor Bitcoin, Ethereum, and 100+ cryptocurrencies.";
