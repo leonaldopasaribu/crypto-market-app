@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: siteName,
     images: [
       {
-        url: `${siteUrl}/og-image.png`,
+        url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
         alt: "Crypto Market Dashboard - Live Cryptocurrency Prices",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Crypto Market Dashboard | Live Cryptocurrency Prices",
     description: siteDescription,
-    images: [`${siteUrl}/og-image.png`],
+    images: [`${siteUrl}/api/og`],
     creator: "@cryptomarket",
   },
   robots: {
